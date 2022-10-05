@@ -1,4 +1,4 @@
-import java.util.*;
+import java.time.*;
 
 /**
  * funcionario
@@ -6,8 +6,8 @@ import java.util.*;
 public class funcionario {
 
   private String nome;
-  private Date nascimento;
-  private Date admissao;
+  private LocalDate nascimento;
+  private LocalDate admissao;
   private String contrato;
   private Monetario monetario;
   private int nFilhos;
@@ -20,8 +20,29 @@ public class funcionario {
   }
 
   public funcionario(String nome, int dia, int mes, int ano) {
+    String day = new String();
+    String month = new String();
+    if (mes < 10) {
+      if (dia < 10) {
+        day = "0" + String.valueOf(dia);
+        month = "0" + String.valueOf(mes);
+      } else {
+        month = "0" + String.valueOf(mes);
+        day = String.valueOf(dia);
+      }
+    } else {
+      if (dia < 10) {
+        day = "0" + String.valueOf(dia);
+        month = String.valueOf(mes);
+      } else {
+        day = String.valueOf(dia);
+        month = String.valueOf(mes);
+      }
+    }
+    String date = String.valueOf(ano) + "-" + String.valueOf(month) + "-" + String.valueOf(day);
     this.nome = nome;
-    this.nascimento = new Date(dia, mes, ano);
+    this.nascimento.parse(date);
+    this.monetario = new Monetario();
   }
 
   public float salarioLiquido() {
@@ -32,7 +53,7 @@ public class funcionario {
     this.contrato = contrato;
     this.monetario.setSalario(salario);
     this.nFilhos = nFilhos;
-    this.admissao = new Date();
+    this.admissao.now();
   }
 
   public float salarioBruto(int horas) {
@@ -84,12 +105,12 @@ public class funcionario {
   }
 
   public void setAdmissao(int dia, int mes, int ano) {
-    Date date = new Date(dia, mes, ano);
-    this.admissao = date;
+    String date = String.valueOf(ano) + "-" + String.valueOf(mes) + "-" + String.valueOf(dia);
+    this.admissao = LocalDate.parse(date);
   }
 
-  public Date getAdmissao() {
-    Date admissao = this.admissao;
+  public LocalDate getAdmissao() {
+    LocalDate admissao = this.admissao;
     return admissao;
   }
 }
