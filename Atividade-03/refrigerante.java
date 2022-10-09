@@ -8,7 +8,7 @@ public class refrigerante {
 
   public refrigerante(int ml, String sabor, String marca) {
     this.marca = marca;
-    this.ml = m;
+    this.ml = ml;
     this.sabor = sabor;
   }
 

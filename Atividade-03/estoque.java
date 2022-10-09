@@ -7,16 +7,33 @@ public class estoque {
   int quantidade;
   float valor;
   refrigerante refri;
-  int ID;
 
   public estoque() {
-    super();
+    this.refri = new refrigerante(0, "NULL", "NULL");
+    this.valor = 0f;
+    this.quantidade = 0;
   }
 
-  public estoque(int valor, int quantidade, refrigerante refri) {
+  public estoque(float valor, int quantidade, refrigerante refri) {
     this.refri = refri;
     this.valor = valor;
     this.quantidade = quantidade;
+  }
+
+  public void addEstoque() {
+    if (quantidade <= 20) {
+      quantidade++;
+    } else {
+      System.out.println("AVISO: Estoque Cheio.");
+    }
+  }
+
+  public void subEstoque() {
+    if (quantidade > 0) {
+      quantidade--;
+    } else {
+      System.out.println("AVISO: Estoque Vazio.");
+    }
   }
 
   public int getQuantidade() {
