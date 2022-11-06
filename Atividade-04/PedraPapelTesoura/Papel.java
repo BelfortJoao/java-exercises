@@ -2,13 +2,9 @@
  * Papel
  */
 public class Papel implements Objeto {
-  String tipo = new String();
 
   public String getTipo() {
-    return this.tipo;
+    return "Papel";
   }
 
-  public void setTipo() {
-    this.tipo = "Papel";
-  }
 }
